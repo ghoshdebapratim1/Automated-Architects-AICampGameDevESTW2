@@ -3,6 +3,7 @@
 def StartMenu():    
     ### Import Pygame
     import pygame
+    from game import StartGame
     from pygame import mixer
     ### Initialize
     pygame.init()
@@ -58,10 +59,10 @@ def StartMenu():
       start_normal_button = normal_button
       start_hover_button = hover_button
       screen.blit(start_normal_button,(buttonX_Pos, 100))
-      """for event in pygame.event.get():
+      for event in pygame.event.get():
         if event.type==pygame.MOUSEBUTTONDOWN:
             if event.pos[0] in range(buttonX_Pos,buttonX_Pos+120) and event.pos[1] in range(100,160):
-              print("Game started.")"""
+              StartGame()
       mouse_x, mouse_y = pygame.mouse.get_pos()
       if buttonX_Pos < mouse_x < buttonX_Pos+120 and 100 < mouse_y < 160:
         screen.blit(start_hover_button,(buttonX_Pos, 100))
@@ -141,4 +142,4 @@ def StartMenu():
       pygame.display.update()
 
 
-StartMenu()
+#StartMenu()
