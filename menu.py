@@ -4,6 +4,7 @@ def StartMenu():
     ### Import Pygame
     import pygame
     from game import StartGame
+    from credits import creditScreen
     from pygame import mixer
     ### Initialize
     pygame.init()
@@ -72,10 +73,10 @@ def StartMenu():
       credits_normal_button = normal_button
       credits_hover_button = hover_button
       screen.blit(credits_normal_button,(buttonX_Pos, 200))
-      """for event in pygame.event.get():
+      for event in pygame.event.get():
         if event.type==pygame.MOUSEBUTTONDOWN:
             if event.pos[0] in range(buttonX_Pos,buttonX_Pos+120) and event.pos[1] in range(200,260):
-              print("Sent to Credits.")"""
+              creditScreen()
       mouse_x, mouse_y = pygame.mouse.get_pos()
       if buttonX_Pos < mouse_x < buttonX_Pos+120 and 200 < mouse_y < 260:
         screen.blit(credits_hover_button,(buttonX_Pos, 200))
@@ -128,10 +129,11 @@ def StartMenu():
           running = False
         if event.type==pygame.MOUSEBUTTONDOWN:
             if event.pos[0] in range(buttonX_Pos,buttonX_Pos+120) and event.pos[1] in range(100,160):
-              print("Game started.")
+              #print("Game started.")
+              StartGame()
         if event.type==pygame.MOUSEBUTTONDOWN:
             if event.pos[0] in range(buttonX_Pos,buttonX_Pos+120) and event.pos[1] in range(200,260):
-              print("Sent to Credits.")
+              creditScreen()
         if event.type==pygame.MOUSEBUTTONDOWN:
             if event.pos[0] in range(buttonX_Pos,buttonX_Pos+120) and event.pos[1] in range(300,360):
               pygame.quit()

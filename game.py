@@ -2,7 +2,7 @@ def StartGame():
     import pygame
     from pygame import mixer
     from menu import StartMenu
-    
+    from endscreen import gameOver
     pygame.init()
     
     ## Music
@@ -87,6 +87,7 @@ def StartGame():
     
       #score text
       scoreText = font.render(str(int(score/1000)), False, (0, 0, 0))
+      #bestScoreText = font.render(str(int(score/1000)), False, (0, 0, 0))
     
       #Background
       screen.blit(Background, (bgx - WIDTH, 0))
@@ -157,19 +158,24 @@ def StartGame():
         enemyfY = random.randint(0, 360) 
       
       #Blit
-      enemy_rect = screen.blit(Enemy, (enemyX, enemyY)) 
-      enemy_rect = screen.blit(Enemy, (enemyX+200, offset))
-      enemy_rect = screen.blit(EnemyF, (enemyfX, enemyfY))
+      enemy_rect_M1 = screen.blit(Enemy, (enemyX, enemyY)) 
+      enemy_rect_M2 = screen.blit(Enemy, (enemyX+200, offset))
+      enemy_rect_F1 = screen.blit(EnemyF, (enemyfX, enemyfY))
+      enemy_rect_F2 = screen.blit(EnemyF, (enemyfX, enemyfY+offset))
       player_rect = screen.blit(Player, (playerX, playerY))
       screen.blit(scoreText,(10,10))
-      
+      playerAlive=True
+      def isCollision(p_rect,e_rect,score,playerAlive=True):
+        if p_rect.colliderect(e_rect):
+          gameOver(str(int(score/1000)))
+          #playerAlive=False
       #Collision+lose condition
-      if player_rect.colliderect(enemy_rect):
-        #StartMenu()
-        print("Game Over")
-        playerAlive = False
+      isCollision(player_rect,enemy_rect_M1,score)
+      isCollision(player_rect,enemy_rect_M2,score)
+      isCollision(player_rect,enemy_rect_F1,score)
+      isCollision(player_rect,enemy_rect_F2,score)
         
-        '''
+      '''
         pygame.display.quit()
         exit()
         '''

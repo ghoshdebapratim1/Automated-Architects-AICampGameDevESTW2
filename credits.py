@@ -1,20 +1,16 @@
 
-def gameOver(scoreText):  
+def creditScreen():  
   import pygame 
-  from pygame import mixer
   #from pygame import font 
   SCREEN_WIDTH= 640
   SCREEN_HEIGHT= 480
   pygame.init()
   pygame.font.init()
-  mixer.init()
-  mixer.music.load("videogame-death-sound-43894.mp3")
-  mixer.music.play()
   screen=pygame.display.set_mode((SCREEN_WIDTH,SCREEN_HEIGHT))
   
   
   running=True 
-  bgd=pygame.image.load('gameover background.png')
+  bgd=pygame.image.load('credits screen.png')
   bgd=pygame.transform.scale(bgd, (SCREEN_WIDTH,SCREEN_HEIGHT))
   
   pygame.init()
@@ -22,6 +18,7 @@ def gameOver(scoreText):
   #screen=pygame.display.set_mode((800,600))
   
   font = pygame.font.SysFont("comicsans", 50)
+  creditsText = font.render("Credits", False, (255, 255, 255))
   running=True
   
   while running:
@@ -30,11 +27,10 @@ def gameOver(scoreText):
               running=False
       #screen.fill((255,0,0))
       screen.blit(bgd,(0,0))
-      go_font=font.render('GAME OVER', False, (255, 255, 255))
-      screen.blit(go_font,(50,100))
-      score_font=font.render('Your Score is '+scoreText,False, (255, 255, 255))
-      screen.blit(score_font,(50,200))
+     
+      #screen.blit(score_font,(50,200))
+      screen.blit(creditsText, ((SCREEN_WIDTH - creditsText.get_width()) // 2, 50))
       pygame.display.update()
 
 
-#gameOver(str(1000))
+#creditScreen()
